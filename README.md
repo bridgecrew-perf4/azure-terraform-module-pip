@@ -1,107 +1,49 @@
-# {{ project_name }}
+# Change this README accordingly
 
-[![pre-commit badge][pre-commit-badge]][pre-commit] [![Conventional commits badge][conventional-commits-badge]][conventional-commits] [![Keep a Changelog v1.1.0 badge][keep-a-changelog-badge]][keep-a-changelog] [![MIT License Badge][license-badge]][license]
+[//]: # (Do NOT make manual changes below this line! Automatic generation of content!)
+<!-- BEGINNING OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
+## Requirements
 
-# Overview
-The repository and it's dependencies can be automatically setup by running an interactive script, that will run a makefile according to the interactive choices made.
+| Name | Version |
+|------|---------|
+| terraform | >= 0.12.20 |
+| azurerm | >= 2.41.0 |
 
-When this script finishes, the repository will be ready to use!
+## Providers
 
-# Getting started
+| Name | Version |
+|------|---------|
+| azurerm | >= 2.41.0 |
 
-After git cloning this repo:
-1. Run:
-    ```bash
-    .first-setup/start.sh
-    ```
-2. Choose option "1":
-    ```
-    ### START USING YOUR REPOSITORY ###
-    (to abort, Ctrl-C)
-    -> Please choose the repo type you
-    -> want to configure or to rebuild
-    -> the configuration!
-    What do you want to do?
-    1) First Time Setup
-    2) Reset config
-    #? 1
-    ```
-3. Choose the which repository type you wish to configure:
-    ```
-    Which type of repository will this be?
-    1) generic
-    2) terraform
-    #? 1
-    ```
-4. If at any time you are asked for sudo privileges, input your password accordingly (you will only be asked once):
-    ```
-    [sudo] password for XXXXX:
-    ```
-5. When presented with the following question (git-chglog configuration):
-    ```
-    ? What is the URL of your repository?
-    ```
-   fill this and all following questions with the presented default values:
-    ```
-    ? What is the URL of your repository? https://github.com/k0kazpt/test-cookiecutter
-    ? What is your favorite style? github
-    ? Choose the format of your favorite commit message <type>(<scope>): <subject>
-    ? What is your favorite template style? keep-a-changelog
-    ? Do you include Merge Commit in CHANGELOG? Yes
-    ? Do you include Revert Commit in CHANGELOG? Yes
-    ? In which directory do you output configuration files and templates? .chglog
-    ```
-6. ✔ Finished!! ✔
-    ```
-    -> Repo setup successfull!
-    ```
+## Inputs
 
-## To reset and reconfigure
-1. Run:
-    ```bash
-    .first-setup/start.sh
-    ```
-2. Choose option "2":
-    ```
-    ### START USING YOUR REPOSITORY ###
-    (to abort, Ctrl-C)
-    -> Please choose the repo type you
-    -> want to configure or to rebuild
-    -> the configuration!
-    What do you want to do?
-    1) First Time Setup
-    2) Reset config
-    #? 2
-    ```
-3. You'll be shown the following message:
-    ```
-    -> Resetting repository metadata:
-    rm -f ../.repo_metadata/.DONE 2>/dev/null
-    rm -f ../.repo_metadata/.repo_* 2>/dev/null
-    -> To reconfigure, run ./first-setup/start.sh again!
-    ```
-4. To reconfigure, follow the instructions in [Getting started](#Getting-started)
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| allocation\_method | value | `string` | `"Static"` | no |
+| custom\_tags | Custom tags that will be merged with the default tags. | `map(string)` | `{}` | no |
+| diagnostics\_map | (Required) Storage account and Event Hub for the IP address diagnostics | `map(string)` | `{}` | no |
+| diagnostics\_settings | (Required) Map with the diagnostics settings for public IP deployment | `map(string)` | `{}` | no |
+| dns\_prefix | Prefix to be appended to the FQDN (ex.: <dns\_prefix>.<region>.cloudapp.azure.com) | `string` | `""` | no |
+| ip\_version | IP Protocol version (IPv4 or IPv6) | `string` | `"Standard"` | no |
+| location | Azure Region of the public IP to be created | `string` | n/a | yes |
+| log\_analytics\_workspace\_id | (Required) Log Analytics ID for the IP address diagnostics | `string` | `""` | no |
+| name | The name (should obey a consistent naming policy) which will be used for the name generation of this public IP. | `string` | n/a | yes |
+| public\_ip\_prefix\_id | Public IP prefix id | `string` | `""` | no |
+| resource\_group\_name | Resource group of the public IP to be created | `string` | n/a | yes |
+| reverse\_fqdn | Reverse DNS (PTR) for public IP. | `string` | `""` | no |
+| sku | SKU (Basic or Standard) | `string` | `"Standard"` | no |
+| tags | Tags to be applied to the IP address to be created | `map(string)` | <pre>{<br>  "ManagedBy": "Terraform"<br>}</pre> | no |
+| timeout | TCP timeout for idle connections. The value can be set between 4 and 30 minutes. | `string` | `"4"` | no |
+| zones | Define zone redundancy! Zone redundant by default! Only available in Regions where Availability zones are supported! | `list(string)` | <pre>[<br>  "1",<br>  "2",<br>  "3"<br>]</pre> | no |
 
-***
-# References
-## conventional commits
-https://www.conventionalcommits.org/
+## Outputs
 
-## pre-commit hooks
+| Name | Description |
+|------|-------------|
+| fqdn | Output the fully qualified domain name |
+| id | Output the object ID |
+| ip\_address | Output the ip address |
+| name | Output the object name |
+| object | Output the full object |
 
-Read the [pre-commit hooks](docs/pre-commit-hooks.md) document for more info.
-
-## git-chglog
-
-Read the [git-chglog](docs/git-chlog.md) document for more info.
-
-[pre-commit]: https://github.com/pre-commit/pre-commit
-[pre-commit-badge]: https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white
-[conventional-commits-badge]: https://img.shields.io/badge/Conventional%20Commits-1.0.0-green.svg
-[conventional-commits]: https://conventionalcommits.org
-[keep-a-changelog-badge]: https://img.shields.io/badge/changelog-Keep%20a%20Changelog%20v1.1.0-%23E05735
-[keep-a-changelog]: https://keepachangelog.com/en/1.0.0/
-[license]: ./LICENSE
-[license-badge]: https://img.shields.io/badge/license-MIT-green.svg
-[changelog]: ./CHANGELOG.md
-[changelog-badge]: https://img.shields.io/badge/changelog-Keep%20a%20Changelog%20v1.1.0-%23E05735
+<!-- END OF PRE-COMMIT-TERRAFORM DOCS HOOK -->
