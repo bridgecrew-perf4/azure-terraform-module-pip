@@ -34,7 +34,7 @@
 | sku | SKU (Basic or Standard) | `string` | `"Standard"` | no |
 | tags | Tags to be applied to the IP address to be created | `map(string)` | <pre>{<br>  "ManagedBy": "Terraform"<br>}</pre> | no |
 | timeout | TCP timeout for idle connections. The value can be set between 4 and 30 minutes. | `string` | `"4"` | no |
-| zones | Define zone redundancy! Zone redundant by default! Only available in Regions where Availability zones are supported! | `list(string)` | <pre>[<br>  "1",<br>  "2",<br>  "3"<br>]</pre> | no |
+| zones | Define zone redundancy! Zone redundant by default! Only available in Regions where Availability zones are supported! | `list(string)` | `[]` | no |
 
 ## Outputs
 

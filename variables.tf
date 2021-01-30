@@ -90,7 +90,7 @@ variable "timeout" {
 variable "zones" {
   description = "Define zone redundancy! Zone redundant by default! Only available in Regions where Availability zones are supported!"
   type        = list(string)
-  default     = ["1", "2", "3"]
+  default     = []
 }
 
 variable "reverse_fqdn" {
